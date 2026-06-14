@@ -49,3 +49,13 @@
   .status-badge-complete  { @apply bg-[#0A2420] text-[#10D98C] text-xs font-mono px-3 py-1 rounded-full; }
   .status-badge-failed    { @apply bg-[#2A1010] text-[#EF4444] text-xs font-mono px-3 py-1 rounded-full; }
 }
+
+/* FormForge landing page styles */
+@keyframes pls { 0%,100%{opacity:1} 50%{opacity:.3} }
+@keyframes flt { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+@keyframes glw { 0%,100%{box-shadow:0 0 20px rgba(0,200,232,.2)} 50%{box-shadow:0 0 50px rgba(0,200,232,.5)} }
+.pls { animation: pls 2s ease-in-out infinite; }
+.flt { animation: flt 3.5s ease-in-out infinite; }
+.glw { animation: glw 3s ease-in-out infinite; }
+.cd { background:#101E35; border:1px solid rgba(0,200,232,.12); border-radius:14px; transition:all .25s; }
+.cd:hover { border-color:rgba(0,200,232,.35); transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.3); }
