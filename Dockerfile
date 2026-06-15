@@ -1,0 +1,14 @@
+FROM node:20-alpine
+
+RUN apk add --no-cache graphicsmagick ghostscript
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY . .
+RUN npx prisma generate
+RUN npx tsc --noEmit
+
+CMD ["npx", "tsx", "src/workers/start.ts"]

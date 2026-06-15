@@ -11,14 +11,32 @@
     "worker:dev": "npx tsx watch src/workers/start.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.1",
+    "@auth/prisma-adapter": "^2.11.2",
+    "@aws-sdk/client-s3": "^3.1068.0",
+    "@aws-sdk/s3-request-presigner": "^3.1068.0",
+    "@prisma/client": "^5.22.0",
+    "bullmq": "^5.78.1",
+    "dxf-writer": "^1.18.4",
+    "ioredis": "^5.11.1",
     "next": "14.2.5",
+    "next-auth": "^4.24.14",
+    "pdf2pic": "^3.2.0",
+    "prisma": "^5.22.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-dropzone": "^15.0.0",
+    "sharp": "^0.35.1",
+    "stripe": "^22.2.1",
+    "three": "^0.184.0",
+    "three-stdlib": "^2.36.1",
+    "tsx": "^4.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.184.1",
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.15",
     "tailwindcss": "^4.3.1",
