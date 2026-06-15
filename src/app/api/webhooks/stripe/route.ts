@@ -4,22 +4,25 @@ import { prisma } from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
 
-// @ts-expect-error - Stripe API version string
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2024-06-20' })
+function getStripe() {
+  // @ts-expect-error - Stripe API version string
+  return new Stripe(process.env.STRIPE_SECRET_KEY ?? '', { apiVersion: '2024-06-20' })
+}
 
 export async function POST(req: NextRequest) {
   const body = await req.text()
   const sig  = req.headers.get('stripe-signature')!
+  const stripe = getStripe()
 
   let event: Stripe.Event
   try {
-    event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)
+    event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET ?? '')
   } catch {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
   }
 
   if (event.type === 'checkout.session.completed') {
-    const session  = event.data.object as Stripe.Checkout.Session
+    const session = event.data.object as Stripe.Checkout.Session
     const { userId, creditsPurchased } = session.metadata!
 
     await prisma.$transaction([

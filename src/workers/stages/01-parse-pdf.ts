@@ -1,6 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk'
-import { s3, uploadToS3 } from '../../lib/s3'
-import { GetObjectCommand } from '@aws-sdk/client-s3'
+import { downloadFromS3, uploadToS3 } from '../../lib/s3'
 import { fromBuffer } from 'pdf2pic'
 import type { ParsedGeometry } from '../../types'
 
@@ -10,11 +9,7 @@ export async function parsePDF(jobId: string, inputKey: string, pagesCount?: num
   console.log(`[Stage1] Downloading PDF from R2: ${inputKey}`)
 
   // Download PDF from R2
-  const response = await s3.send(new GetObjectCommand({
-    Bucket: process.env.S3_BUCKET!,
-    Key: inputKey,
-  }))
-  const pdfBuffer = Buffer.from(await response.Body!.transformToByteArray())
+  const pdfBuffer = await downloadFromS3(inputKey)
 
   // Convert PDF pages to high-resolution PNG images
   // 200 DPI is optimal for 1:100 architectural drawings
