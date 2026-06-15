@@ -4,6 +4,8 @@ import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import { JobViewerClient } from './JobViewerClient'
 
+export const dynamic = 'force-dynamic'
+
 export default async function JobPage({ params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions)
   const job     = await prisma.job.findUnique({ where: { id: params.id } })
