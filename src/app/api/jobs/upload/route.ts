@@ -6,6 +6,8 @@ import { uploadToS3 } from '@/lib/s3'
 import { jobQueue } from '@/lib/queue'
 import { redis } from '@/lib/redis'
 
+export const dynamic = 'force-dynamic'
+
 const MAX_FILE_SIZE = 50 * 1024 * 1024 // 50MB
 const RATE_LIMIT    = parseInt(process.env.RATE_LIMIT_JOBS_PER_HOUR ?? '3')
 

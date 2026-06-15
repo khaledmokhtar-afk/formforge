@@ -3,6 +3,8 @@ import { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 import { deleteFromS3 } from '@/lib/s3'
 
+export const dynamic = 'force-dynamic'
+
 // Vercel cron: runs daily at 2am
 // Configured in vercel.json: { "crons": [{ "path": "/api/cron/cleanup", "schedule": "0 2 * * *" }] }
 
