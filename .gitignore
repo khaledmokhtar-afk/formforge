@@ -8,3 +8,6 @@ node_modules/
 samples/
 *.dwg
 samples/
+.env.local.backup
+.env*.backup
+*.backup
